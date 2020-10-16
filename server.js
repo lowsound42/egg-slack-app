@@ -25,31 +25,29 @@ app.post("/test", (req, res) => {
           "type": "section",
           "text": {
             "type": "mrkdwn",
-            "text": `It's an ${JSON.parse(data).this} for ${JSON.parse(data).that}`
-          }
+            "text": `So, basically, it's like an ${JSON.parse(data).this} for ${JSON.parse(data).that}`
+                  }
+                }
+              ]
+            })
+        } else {
+          res.send({
+            "response_type": "in_channel",
+            "blocks": [
+            {
+              "type": "section",
+              "text": {
+                "type": "mrkdwn",
+                "text": `So, basically, it's like a ${JSON.parse(data).this} for ${JSON.parse(data).that}`
+              }
+            }
+          ]
+        })
         }
-      ]
-    })
-  } else {
-    res.send({
-      "response_type": "in_channel",
-      "blocks": [
-      {
-        "type": "section",
-        "text": {
-          "type": "mrkdwn",
-          "text": `It's a ${JSON.parse(data).this} for ${JSON.parse(data).that}`
-        }
-      }
-    ]
+      });    
+    }).on("error", (err) => {
+      console.log("Error: " + err.message);
   })
-  }
-    });
-  
-  }).on("error", (err) => {
-    console.log("Error: " + err.message);
-  })
-  
 })
 
 
