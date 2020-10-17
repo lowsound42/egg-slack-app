@@ -1,6 +1,6 @@
 const express = require("express")
 const app = express()
-const port = process.env.PORT || 8000
+const port = process.env.PORT || 8042
 const http = require('http')
 
 app.get("/", (req, res) => {
@@ -44,7 +44,7 @@ app.post("/test", (req, res) => {
           ]
         })
         }
-      });    
+      });
     }).on("error", (err) => {
       console.log("Error: " + err.message);
   })
