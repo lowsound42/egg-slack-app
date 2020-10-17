@@ -76,13 +76,12 @@ app.post("/light", (request, res) => {
       axios.put('http://192.168.0.106/api/Kh4lvPekMerBQslndYvx0Z2Lwh-ITbOwNBK8yYjP/lights/3/state', {
         "hue": 25500
       })
-    } else if (thing == "reset" && (lightState == true || lightState == false)){
+    } else if (thing == "reset"){
       axios.put('http://192.168.0.106/api/Kh4lvPekMerBQslndYvx0Z2Lwh-ITbOwNBK8yYjP/lights/3/state', {
         "on": false,
         "hue": 8597
       })
-    }
-    else if (thing == "off"){
+    }else if (thing == "off" && lightState == true){
       axios.put('http://192.168.0.106/api/Kh4lvPekMerBQslndYvx0Z2Lwh-ITbOwNBK8yYjP/lights/3/state', {
         "on": false
       })
