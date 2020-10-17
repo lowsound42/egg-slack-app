@@ -61,17 +61,16 @@ app.post("/test", (req, res) => {
 app.post("/light", (request, res) => {
   console.log(request.body.text)
   var thing = request.body.text
-
   if (thing == "on")
   {
-    axios.put('http://192.168.0.106/api/Kh4lvPekMerBQslndYvx0Z2Lwh-ITbOwNBK8yYjP/lights/1/state', {
+    axios.put('http://192.168.0.106/api/Kh4lvPekMerBQslndYvx0Z2Lwh-ITbOwNBK8yYjP/lights/3/state', {
       "on": true
     })
   }
 
   if (thing == "off")
   {
-    axios.put('http://192.168.0.106/api/Kh4lvPekMerBQslndYvx0Z2Lwh-ITbOwNBK8yYjP/lights/1/state', {
+    axios.put('http://192.168.0.106/api/Kh4lvPekMerBQslndYvx0Z2Lwh-ITbOwNBK8yYjP/lights/3/state', {
       "on": false
     })
   }
