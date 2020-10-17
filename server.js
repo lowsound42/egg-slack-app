@@ -64,14 +64,14 @@ app.post("/light", (request, res) => {
 
   if (thing == "on")
   {
-    axios.put('http://192.168.0.106/api/Kh4lvPekMerBQslndYvx0Z2Lwh-ITbOwNBK8yYjP/lights/3/state', {
+    axios.put('http://192.168.0.106/api/Kh4lvPekMerBQslndYvx0Z2Lwh-ITbOwNBK8yYjP/lights/1/state', {
       "on": true
     })
   }
 
   if (thing == "off")
   {
-    axios.put('http://192.168.0.106/api/Kh4lvPekMerBQslndYvx0Z2Lwh-ITbOwNBK8yYjP/lights/3/state', {
+    axios.put('http://192.168.0.106/api/Kh4lvPekMerBQslndYvx0Z2Lwh-ITbOwNBK8yYjP/lights/1/state', {
       "on": false
     })
   }
