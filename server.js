@@ -61,19 +61,33 @@ app.post("/test", (req, res) => {
 app.post("/light", (request, res) => {
   console.log(request.body.text)
   var thing = request.body.text
-  if (thing == "on")
-  {
-    axios.put('http://192.168.0.106/api/Kh4lvPekMerBQslndYvx0Z2Lwh-ITbOwNBK8yYjP/lights/3/state', {
-      "on": true
-    })
-  }
-
-  if (thing == "off")
-  {
-    axios.put('http://192.168.0.106/api/Kh4lvPekMerBQslndYvx0Z2Lwh-ITbOwNBK8yYjP/lights/3/state', {
-      "on": false
-    })
-  }
+  var lightState;
+  axios.get("http://192.168.0.106/api/Kh4lvPekMerBQslndYvx0Z2Lwh-ITbOwNBK8yYjP/lights/3/")
+  .then(function(response){
+    lightState = response.data.state.on
+    console.log(lightState)
+  }).then(function(response){
+    if (thing == "on" && lightState == false){
+      axios.put('http://192.168.0.106/api/Kh4lvPekMerBQslndYvx0Z2Lwh-ITbOwNBK8yYjP/lights/3/state', {
+        "on": true,
+        "hue": 25500
+      })
+    } else if (thing == "on" && lightState == true){
+      axios.put('http://192.168.0.106/api/Kh4lvPekMerBQslndYvx0Z2Lwh-ITbOwNBK8yYjP/lights/3/state', {
+        "hue": 25500
+      })
+    } else if (thing == "reset" && (lightState == true || lightState == false)){
+      axios.put('http://192.168.0.106/api/Kh4lvPekMerBQslndYvx0Z2Lwh-ITbOwNBK8yYjP/lights/3/state', {
+        "on": false,
+        "hue": 8597
+      })
+    }
+    else if (thing == "off"){
+      axios.put('http://192.168.0.106/api/Kh4lvPekMerBQslndYvx0Z2Lwh-ITbOwNBK8yYjP/lights/3/state', {
+        "on": false
+      })
+    }
+  })
   res.send("You're messing with my lights")
 })
 
