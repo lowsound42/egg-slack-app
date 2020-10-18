@@ -71,7 +71,7 @@ app.post("/light", (request, res) => {
       case thing = "green":
         axios.put('http://192.168.0.106/api/Kh4lvPekMerBQslndYvx0Z2Lwh-ITbOwNBK8yYjP/lights/1/state', {
         "on": true,
-        "hue":  8597
+        "hue":  21845 
       })
       break;
       case thing = "red":
