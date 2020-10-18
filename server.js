@@ -60,12 +60,6 @@ app.post("/test", (req, res) => {
 
 app.post("/light", (request, res) => {
   var thing = request.body.text
-  console.log(thing);
-  var lightState;
-  axios.get("http://192.168.0.106/api/Kh4lvPekMerBQslndYvx0Z2Lwh-ITbOwNBK8yYjP/lights/3/")
-  .then(function(response){
-    lightState = response.data.state.on
-  }).then(function(response){
     console.log("THING IS: ", thing)
     switch(thing){
       case thing = "green":
@@ -103,7 +97,6 @@ app.post("/light", (request, res) => {
         "hue":  8597 
       })
     }
-  })
   res.send("You're messing with my lights")
 })
 
