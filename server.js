@@ -59,30 +59,48 @@ app.post("/test", (req, res) => {
 
 
 app.post("/light", (request, res) => {
-  console.log(request.body.text)
   var thing = request.body.text
+  console.log(thing);
   var lightState;
-  axios.get("http://192.168.0.106/api/Kh4lvPekMerBQslndYvx0Z2Lwh-ITbOwNBK8yYjP/lights/3/")
+  axios.get("http://192.168.0.106/api/Kh4lvPekMerBQslndYvx0Z2Lwh-ITbOwNBK8yYjP/lights/1/")
   .then(function(response){
     lightState = response.data.state.on
-    console.log(lightState)
   }).then(function(response){
-    if (thing == "on" && lightState == false){
-      axios.put('http://192.168.0.106/api/Kh4lvPekMerBQslndYvx0Z2Lwh-ITbOwNBK8yYjP/lights/3/state', {
+    console.log("THING IS: ", thing)
+    switch(thing){
+      case thing = "green":
+        axios.put('http://192.168.0.106/api/Kh4lvPekMerBQslndYvx0Z2Lwh-ITbOwNBK8yYjP/lights/1/state', {
         "on": true,
-        "hue": 25500
+        "hue":  8597
       })
-    } else if (thing == "on" && lightState == true){
-      axios.put('http://192.168.0.106/api/Kh4lvPekMerBQslndYvx0Z2Lwh-ITbOwNBK8yYjP/lights/3/state', {
-        "hue": 25500
+      break;
+      case thing = "red":
+        axios.put('http://192.168.0.106/api/Kh4lvPekMerBQslndYvx0Z2Lwh-ITbOwNBK8yYjP/lights/1/state', {
+        "on": true,
+        "hue":  65535
       })
-    } else if (thing == "reset"){
-      axios.put('http://192.168.0.106/api/Kh4lvPekMerBQslndYvx0Z2Lwh-ITbOwNBK8yYjP/lights/3/state', {
-        "hue": 8597
+      break;
+      case thing = "blue":
+        axios.put('http://192.168.0.106/api/Kh4lvPekMerBQslndYvx0Z2Lwh-ITbOwNBK8yYjP/lights/1/state', {
+        "on": true,
+        "hue":  43690 
       })
-    }else if (thing == "off" && lightState == true){
-      axios.put('http://192.168.0.106/api/Kh4lvPekMerBQslndYvx0Z2Lwh-ITbOwNBK8yYjP/lights/3/state', {
-        "on": false
+      break;
+      case thing = "reset":
+        axios.put('http://192.168.0.106/api/Kh4lvPekMerBQslndYvx0Z2Lwh-ITbOwNBK8yYjP/lights/1/state', {
+        "on": true,
+        "hue":  8597 
+      })
+      break;
+      case thing = "off":
+        axios.put('http://192.168.0.106/api/Kh4lvPekMerBQslndYvx0Z2Lwh-ITbOwNBK8yYjP/lights/1/state', {
+        "on": false,
+      })
+      break;
+      default: 
+        axios.put('http://192.168.0.106/api/Kh4lvPekMerBQslndYvx0Z2Lwh-ITbOwNBK8yYjP/lights/1/state', {
+        "on": true,
+        "hue":  8597 
       })
     }
   })
