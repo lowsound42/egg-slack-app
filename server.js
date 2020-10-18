@@ -4,6 +4,9 @@ const port = process.env.PORT || 8042
 const http = require('http')
 const axios = require("axios")
 const bodyParser = require('body-parser');
+var cors = require("cors")
+
+app.use(cors())
 
 
 app.use(bodyParser.json());
