@@ -12,12 +12,16 @@ app.use(cors())
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 app.get("/", (req, res) => {
   res.send("I'M ALIVE!")
   console.log("something happened")
 })
-
-
 
 app.post("/test", (req, res) => {
   http.get("http://itsthisforthat.com/api.php?json", (resp) => {
