@@ -5,12 +5,17 @@ const http = require('http')
 const axios = require("axios")
 const bodyParser = require('body-parser');
 var cors = require("cors")
+var gpio = require('onoff').Gpio;
+var pir = new gpio(7, 'in', 'both');
 
 app.use(cors())
 
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+
+
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -22,6 +27,17 @@ app.get("/", (req, res) => {
   res.send("I'M ALIVE!")
   console.log("something happened")
 })
+
+pir.watch(function(err, value){
+   if(err) console.log(err);
+   if(value === 1){
+       axios.put('http://192.168.0.106/api/Kh4lvPekMerBQslndYvx0Z2Lwh-ITbOwNBK8yYjP/lights/3/state', {
+        "on": true,
+        "hue":  21845 
+      })
+   console.log(value);
+}
+});
 
 app.post("/test", (req, res) => {
   http.get("http://itsthisforthat.com/api.php?json", (resp) => {
